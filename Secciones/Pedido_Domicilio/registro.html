@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pedido a Domicilio</title>
+    <link rel="stylesheet" href="styles_login.css"> <!-- Reutiliza los estilos --> 
+</head>
+<body>
+    <div class="container">
+        <div class="card-form">
+            <h1>Agrege sus datos para su pedido a domicilio</h1>
+            
+            <form id="form-registro">
+                <!-- Campo: Nombre -->
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <!-- Campo: Teléfono -->
+                <div class="form-group">
+                    <label>Teléfono:</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+
+                <!-- Campo: Correo -->
+                <div class="form-group">
+                    <label>Correo electrónico:</label>
+                    <input type="email" id="correo" required>
+                </div>
+
+                <!-- Botón Siguiente -->
+                <div class="button-group">
+                    <button class="login-btn" type="button" onclick="irASiguiente()">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="modal-exito" class="modal-exito">
+        <div class="modal-contenido">
+            <h2>¡Registro exitoso! ✅</h2>
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Modal de error -->
+    <div id="modal-error-registro" class="modal-error">
+        <div class="modal-contenido-error">
+            <h2>❌ Error en el registro</h2>
+            <p id="mensaje-error-registro"></p>
+            <button onclick="cerrarModalErrorRegistro()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="scripts_registro.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beefmaster - Pago con Mercado Pago</title>
+    <link rel="stylesheet" href="styles-mercadopago.css">
+</head>
+<body>
+    <div class="container">
+        <div class="payment-form">
+            <div class="header">
+                <img src="../mercadopago-icon.png" alt="Mercado Pago" class="logo">
+                <h1>Pago con Mercado Pago</h1>
+                <p class="description">Elija su método preferido dentro de Mercado Pago</p>
+            </div>
+            
+            <div class="payment-options">
+                
+                <div class="payment-option" data-option="saldo">
+                    <img src="pago.png" alt="Cuenta" class="option-icon">
+                    <div class="option-info">
+                        <div class="option-title">Saldo en Mercado Pago</div>
+                        <div class="option-description">Usando el saldo disponible en su cuenta</div>
+                    </div>
+                    <div class="radio"></div>
+                </div>
+                
+                <div class="payment-option" data-option="transferencia">
+                    <img src="tranferencia.png" alt="Transferencia" class="option-icon">
+                    <div class="option-info">
+                        <div class="option-title">Transferencia bancaria</div>
+                        <div class="option-description">Desde su banca en línea</div>
+                    </div>
+                    <div class="radio"></div>
+                </div>
+                
+            </div>
+            
+            <div class="button-container">
+                <button id="pay-button" class="pay-button">Continuar al pago</button>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="back-button" id="back-button">Volver a métodos de pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts-mercadopago.js"></script>
+</body>
+</html>
