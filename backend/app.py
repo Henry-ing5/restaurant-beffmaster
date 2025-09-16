@@ -117,17 +117,31 @@ def guardar_domicilio():
         if not data.get('direccion') or not data.get('referencia'):
             return jsonify({"error": "Dirección y referencia son obligatorios"}), 400
 
-        # Los items ya son strings (nombres), no objetos
-        nombres_cortes = data['alimentos']['cortes']  # <-- Cambio aquí
-        nombres_bebidas = data['alimentos']['bebidas'] # <-- Cambio aquí
+        nombres_cortes = data['alimentos']['cortes']
+        nombres_bebidas = data['alimentos']['bebidas']
 
-        # Resto del código igual...
-
-        # Generar folio único
+        # Generar folio_d con formato adecuado (DOM-seguido de 7 dígitos)
         conn = get_db()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT generar_folio_d() AS folio")
-        folio_d = cursor.fetchone()["folio"]
+        
+        # Obtener el último número de secuencia de forma más robusta
+        cursor.execute('''
+            SELECT folio_d FROM domicilio 
+            WHERE folio_d LIKE 'DOM-%' 
+            ORDER BY CAST(SUBSTRING(folio_d, 7) AS UNSIGNED) DESC 
+            LIMIT 1
+        ''')
+        
+        result = cursor.fetchone()
+        
+        if result:
+            last_folio = result['folio_d']
+            last_seq = int(last_folio.split('-')[1])
+            new_seq = last_seq + 1
+        else:
+            new_seq = 1
+            
+        folio_d = f"DOM-{new_seq:07d}" # Formato con 7 dígitos
 
         # Insertar en domicilio
         cursor.execute('''
@@ -137,8 +151,8 @@ def guardar_domicilio():
         ''', (
             folio_d,
             data['cliente_folio'],
-            json.dumps(nombres_cortes),  # Solo nombres
-            json.dumps(nombres_bebidas), # Solo nombres
+            json.dumps(nombres_cortes),
+            json.dumps(nombres_bebidas),
             data['direccion'],
             data['referencia'],
             data['total']
