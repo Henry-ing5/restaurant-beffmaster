@@ -4,7 +4,7 @@ body{
 /* Estilos generales */
 .contenedor-servicios {
     padding: 4rem 2rem;
-    background: #c9c1c1;
+    background: beige;
     min-height: 100vh;
     text-align: center;
 }
@@ -26,11 +26,12 @@ body{
 /* Grid de servicios */
 .grid-servicios {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cambiado de 2 a 3 columnas */
-    gap: 2rem; /* Reducir el espacio entre columnas */
-    max-width: 1400px; /* Aumentar el ancho máximo */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+    max-width: 1400px; 
     margin: 0 auto;
     padding: 0 1rem;
+    border-color: #000000;
 }
 
 

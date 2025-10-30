@@ -57,7 +57,7 @@ input:focus {
 }
 
 .login-btn {
-    background: #4CAF50;
+    background: #e74c3c;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -67,48 +67,9 @@ input:focus {
 }
 
 .login-btn:hover {
-    background: #45a049;
+    background: #c0392b;
 }
 
-/* Opción invitado */
-.alternative-option {
-    text-align: center;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-top: 1px solid #eee;
-}
-
-.alternative-option span {
-    display: block;
-    color: #666;
-    margin-bottom: 0.8rem;
-}
-
-.guest-btn {
-    background: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-    width: 100%;
-}
-
-.guest-btn:hover {
-    background: #2980b9;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .button-group {
-        flex-direction: column;
-    }
-    
-    .guest-btn {
-        width: auto;
-    }
-}
 
 /* Modal de éxito */
 .modal-exito {

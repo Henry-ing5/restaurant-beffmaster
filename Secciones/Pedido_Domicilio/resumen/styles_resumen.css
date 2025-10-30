@@ -7,8 +7,8 @@
 }
 
 body {
-    background-color: #000;
-    color: #fff;
+    background-color: beige;
+    color: #3E2723; /* Texto principal café oscuro */
 }
 
 .container {
@@ -28,6 +28,7 @@ body {
 .menu-header h1 {
     font-size: 32px;
     font-weight: bold;
+    color: #4E342E; 
 }
 
 /* Contenido del resumen */
@@ -38,14 +39,16 @@ body {
 }
 
 .seccion-pedido {
-    background-color: #111;
+    background-color: beige; 
+    color: #fff; 
     padding: 20px;
     border-radius: 8px;
+    color: #4E342E;
 }
 
 .seccion-pedido h2 {
     margin-bottom: 15px;
-    color: #f3be00;
+    color: #4E342E; 
 }
 
 .items-resumen {
@@ -58,12 +61,13 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #795548; /* Borde café medio */
 }
 
 /* Totales */
 .totales {
-    background-color: #111;
+    background-color: beige; 
+    color: #4E342E; 
     padding: 20px;
     border-radius: 8px;
 }
@@ -78,12 +82,11 @@ body {
 .total-final {
     font-size: 24px;
     font-weight: bold;
-    color: #f3be00;
+    color: #4E342E; 
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 2px solid #333;
+    border-top: 2px solid #795548; 
 }
-
 .boton-siguiente {
     margin-top: 30px;
 }

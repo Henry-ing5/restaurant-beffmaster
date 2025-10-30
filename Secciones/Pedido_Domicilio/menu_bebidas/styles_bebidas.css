@@ -7,8 +7,8 @@
 }
 
 body {
-    background-color: #000;
-    color: #fff;
+    background-color: beige;
+    color: #3E2723; /* Texto principal café oscuro */
 }
 
 .container {
@@ -28,6 +28,7 @@ body {
 .menu-header h1 {
     font-size: 32px;
     font-weight: bold;
+    color: #4E342E; 
 }
 
 .customer-id {
@@ -48,6 +49,7 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
+    color: #4E342E; 
 }
 
 /* Estilos para los elementos del menú */
@@ -62,7 +64,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #D7CCC8; 
 }
 
 .item-details {
@@ -76,7 +78,7 @@ body {
 
 .item-details p {
     font-size: 14px;
-    color: #ccc;
+    color: #795548; 
     margin-bottom: 10px;
 }
 
@@ -110,17 +112,18 @@ body {
     width: 50px;
     height: 30px;
     text-align: center;
-    border: 1px solid #333;
-    background-color: #000;
-    color: #fff;
+    border: 1px solid #BCAAA4; 
+    background-color: #EFEBE9; 
+    color: #3E2723; 
 }
-
 /* Estilos para la sección de selecciones */
 .selected-items {
-    background-color: #111;
+    background-color: #ffffff; 
+    color: #3E2723; 
     padding: 15px;
     min-height: 200px;
     margin-bottom: 30px;
+    border-radius: 5px; 
 }
 
 .selected-item {

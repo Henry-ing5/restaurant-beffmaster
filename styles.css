@@ -104,8 +104,9 @@ body {
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgb(255, 254, 254);
     border: 8px solid #ffffff;
+    overflow: hidden;
     animation: flotar 4s ease-in-out infinite;
 }
 
@@ -113,7 +114,7 @@ body {
     position: absolute;
     bottom: 30px;
     right: 30px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0,8);
     color: white;
     padding: 20px;
     border-radius: 15px;
