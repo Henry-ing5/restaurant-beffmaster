@@ -1,29 +1,48 @@
 async function irASiguiente() {
+    // Obtener valores de los campos
     const nombre = document.getElementById('nombre').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
     const correo = document.getElementById('correo').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmarPassword = document.getElementById('confirmar-password').value;
 
     // Validaciones
     if (!nombre || nombre.length < 3) {
-        alert('Nombre debe tener al menos 3 caracteres');
+        mostrarError('Nombre debe tener al menos 3 caracteres');
         return;
     }
     
     if (!telefono || !/^\d{10}$/.test(telefono)) {
-        alert('Teléfono debe tener 10 dígitos');
+        mostrarError('Teléfono debe tener 10 dígitos');
         return;
     }
 
     if (!correo || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
-        alert('Correo electrónico inválido');
+        mostrarError('Correo electrónico inválido');
+        return;
+    }
+
+    if (!password || password.length < 6) {
+        mostrarError('La contraseña debe tener al menos 6 caracteres');
+        return;
+    }
+
+    if (password !== confirmarPassword) {
+        mostrarError('Las contraseñas no coinciden');
         return;
     }
 
     try {
+        // Registrar cliente en backend
         const response = await fetch('http://localhost:5000/registrar-cliente', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, telefono, correo })
+            body: JSON.stringify({ 
+                nombre, 
+                telefono, 
+                correo, 
+                password 
+            })
         });
 
         const resultado = await response.json();
@@ -32,16 +51,9 @@ async function irASiguiente() {
             throw new Error(resultado.error || "Error en el registro");
         }
 
-        // Guardar todos los datos en sesión
-        sessionStorage.setItem('cliente', JSON.stringify({
-            folio: resultado.folio,
-            nombre: resultado.nombre,
-            telefono: resultado.telefono, // Campo crítico
-            correo: correo
-        }));
-        
+        // No guardamos en sesión hasta que hagan login
         document.getElementById('modal-exito').style.display = 'flex';
-
+        
     } catch (error) {
         const modalError = document.getElementById('modal-error-registro');
         const mensajeError = document.getElementById('mensaje-error-registro');
@@ -57,12 +69,19 @@ async function irASiguiente() {
         console.error("Detalles del error:", error);
     }
 }
+
+function mostrarError(mensaje) {
+    const modalError = document.getElementById('modal-error-registro');
+    const mensajeError = document.getElementById('mensaje-error-registro');
+    mensajeError.textContent = mensaje;
+    modalError.style.display = 'flex';
+}
+
 function cerrarModal() {
     document.getElementById('modal-exito').style.display = 'none';
     window.location.href = "login.html";
 }
 
-// Función para cerrar modal de error
 function cerrarModalErrorRegistro() {
     document.getElementById('modal-error-registro').style.display = 'none';
 }

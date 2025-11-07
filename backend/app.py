@@ -5,6 +5,7 @@ import uuid
 import logging
 import json
 from mysql.connector import Error
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Configuración logging
 logging.basicConfig(
@@ -37,15 +38,19 @@ def verificar_cliente():
     try:
         data = request.get_json()
         email = data.get('correo')
+        password = data.get('password')
 
         if not email or '@' not in email:
             return jsonify({"error": "Correo inválido"}), 400
+
+        if not password:
+            return jsonify({"error": "Contraseña requerida"}), 400
 
         conn = get_db()
         cursor = conn.cursor(dictionary=True)
         
         cursor.execute('''
-            SELECT folio_cliente, nombre, telefono FROM cliente 
+            SELECT folio_cliente, nombre, telefono, password FROM cliente 
             WHERE email = %s
         ''', (email,))
         
@@ -54,14 +59,24 @@ def verificar_cliente():
         conn.close()
 
         if cliente:
-            return jsonify({
-                "existe": True,
-                "folio": cliente['folio_cliente'],
-                "nombre": cliente['nombre'],
-                "telefono": cliente['telefono']
-            }), 200
+            # Verificar contraseña
+            if check_password_hash(cliente['password'], password):
+                return jsonify({
+                    "existe": True,
+                    "folio": cliente['folio_cliente'],
+                    "nombre": cliente['nombre'],
+                    "telefono": cliente['telefono']
+                }), 200
+            else:
+                return jsonify({
+                    "existe": False,
+                    "error": "Contraseña incorrecta"
+                }), 401
         else:
-            return jsonify({"existe": False}), 404
+            return jsonify({
+                "existe": False,
+                "error": "Correo no registrado"
+            }), 404
 
     except Exception as e:
         logger.error(f"Error: {str(e)}")
@@ -73,17 +88,24 @@ def registrar_cliente():
         data = request.get_json()
         folio = str(uuid.uuid4())
 
-        if not all([data.get('nombre'), data.get('telefono'), data.get('correo')]):
-            return jsonify({"error": "Campos faltantes"}), 400
+        if not all([data.get('nombre'), data.get('telefono'), data.get('correo'), data.get('password')]):
+            return jsonify({"error": "Todos los campos son obligatorios"}), 400
+
+        # Validar longitud de contraseña
+        if len(data.get('password', '')) < 6:
+            return jsonify({"error": "La contraseña debe tener al menos 6 caracteres"}), 400
+
+        # Hashear la contraseña
+        hashed_password = generate_password_hash(data['password'])
 
         conn = get_db()
         cursor = conn.cursor()
         
         cursor.execute('''
             INSERT INTO cliente 
-            (folio_cliente, nombre, telefono, email)
-            VALUES (%s, %s, %s, %s)
-        ''', (folio, data['nombre'], data['telefono'], data['correo']))
+            (folio_cliente, nombre, telefono, email, password)
+            VALUES (%s, %s, %s, %s, %s)
+        ''', (folio, data['nombre'], data['telefono'], data['correo'], hashed_password))
         
         conn.commit()
         cursor.close()
@@ -93,14 +115,21 @@ def registrar_cliente():
             "mensaje": "Registro exitoso",
             "folio": folio,
             "nombre": data['nombre'],
-            "telefono": data['telefono']  # Campo añadido
+            "telefono": data['telefono'],
+            "correo": data['correo']
         }), 201
 
-    except mysql.connector.IntegrityError:
-        return jsonify({"error": "Correo ya registrado"}), 409
+    except mysql.connector.IntegrityError as e:
+        error_msg = str(e).lower()
+        if 'email' in error_msg:
+            return jsonify({"error": "Correo ya registrado"}), 409
+        elif 'telefono' in error_msg:
+            return jsonify({"error": "Teléfono ya registrado"}), 409
+        else:
+            return jsonify({"error": "Datos duplicados"}), 409
     except Exception as e:
         logger.error(f"Error: {str(e)}")
-        return jsonify({"error": "Error interno"}), 500
+        return jsonify({"error": "Error interno del servidor"}), 500
 
 @app.route('/guardar-domicilio', methods=['POST'])
 def guardar_domicilio():
@@ -283,8 +312,6 @@ def mesas_ocupadas():
         if 'conn' in locals() and conn:
             conn.close()
     
-# Añade estos endpoints a tu archivo app.py existente
-
 @app.route('/obtener-comentarios', methods=['GET'])
 def obtener_comentarios():
     try:
