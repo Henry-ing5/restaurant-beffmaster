@@ -1,0 +1,215 @@
+/* Estilos para la sección de comentarios */
+.contenedor-comentarios {
+    padding: 2px;
+    background: beige;
+    min-height: 100vh;
+}
+
+/* Formulario de comentarios */
+.formulario-comentario {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formulario-comentario h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.campo-formulario {
+    margin-bottom: 1.5rem;
+}
+
+.campo-formulario label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #34495e;
+    font-weight: 600;
+}
+
+.campo-formulario input[type="text"],
+.campo-formulario textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.estrellas-valoracion {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+}
+
+.estrellas-valoracion i {
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.estrellas-valoracion i.active {
+    color: #f1c40f;
+}
+
+.estrellas-valoracion i:hover,
+.estrellas-valoracion i:hover ~ i {
+    color: #f39c12;
+}
+
+.boton-publicar {
+    background: #e74c3c;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boton-publicar:hover {
+    background: #c0392b;
+}
+
+/* Listado de comentarios */
+.listado-comentarios {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+}
+
+.listado-comentarios h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.comentario {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.encabezado-comentario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.nombre-usuario {
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.fecha-comentario {
+    font-weight: 550;
+    color: #000000;
+    font-size: 0.9rem;
+}
+
+.valoracion-comentario {
+    margin-bottom: 1rem;
+    color: #f1c40f;
+}
+
+.texto-comentario {
+    font-weight: 550;
+    color: #274768;
+    line-height: 1.6;
+}
+
+.mensaje-cargando {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 2rem;
+    font-style: italic;
+}
+
+.sin-comentarios {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+}
+
+/* Botón volver */
+.boton-volver {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .formulario-comentario,
+    .listado-comentarios {
+        padding: 1.5rem;
+    }
+    
+    .encabezado-comentario {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .fecha-comentario {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Modal de éxito */
+.modal-comentario-exito {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido-comentario {
+    background: rgb(31, 202, 9);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-contenido-comentario button {
+    background: #ad1908;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.modal-contenido-comentario button:hover {
+    background: #ffff;
+}

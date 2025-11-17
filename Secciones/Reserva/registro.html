@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Pedido a Domicilio</title>
+    <link rel="stylesheet" href="styles_login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card-form">
+        <h1>Agregue sus datos para su registro</h1>
+
+        <form id="form-registro">
+          <!-- Campo: Nombre -->
+          <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" required />
+          </div>
+
+          <!-- Campo: Teléfono -->
+          <div class="form-group">
+            <label>Teléfono:</label>
+            <input type="tel" id="telefono" required />
+          </div>
+
+          <!-- Campo: Correo -->
+          <div class="form-group">
+            <label>Correo electrónico:</label>
+            <input type="email" id="correo" required />
+          </div>
+
+          <!-- Campo: Contraseña -->
+          <div class="form-group">
+            <label>Contraseña:</label>
+            <input type="password" id="password" required minlength="6" />
+            <small style="color: #666; font-size: 12px"
+              >Mínimo 6 caracteres</small
+            >
+          </div>
+
+          <!-- Campo: Confirmar Contraseña -->
+          <div class="form-group">
+            <label>Confirmar Contraseña:</label>
+            <input type="password" id="confirmar-password" required />
+          </div>
+
+          <!-- Botón Siguiente -->
+          <div class="button-group">
+            <button class="login-btn" type="button" onclick="irASiguiente()">
+              Registrarse
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div id="modal-exito" class="modal-exito">
+      <div class="modal-contenido">
+        <h2>¡Registro exitoso! ✅</h2>
+        <p>Ya puede iniciar sesión con su correo y contraseña</p>
+        <button onclick="cerrarModal()">Iniciar Sesión</button>
+      </div>
+    </div>
+
+    <!-- Modal de error -->
+    <div id="modal-error-registro" class="modal-error">
+      <div class="modal-contenido-error">
+        <h2>❌ Error en el registro</h2>
+        <p id="mensaje-error-registro"></p>
+        <button onclick="cerrarModalErrorRegistro()">Cerrar</button>
+      </div>
+    </div>
+
+    <script src="scripts_registro.js"></script>
+  </body>
+</html>

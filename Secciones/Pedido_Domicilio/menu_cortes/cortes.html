@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beefmaster - Menú de Cortes</title>
+    <link rel="stylesheet" href="styles_cortes.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="menu-page" id="cortes-page">
+        <div class="menu-header">
+          <h1>Menu</h1>
+        </div>
+
+        <div class="menu-content">
+          <div class="menu-column">
+            <h2>Cortes</h2>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="cowboy.jpeg" alt="Cowboy" />
+                </div>
+                <div class="item-details">
+                  <h3>COWBOY</h3>
+                  <p>
+                    Un corte fino con abundante grasa intramuscular que ofrece
+                    carne suave.
+                  </p>
+                  <div class="price">$349 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="new-york.png" alt="New York Angus" />
+                </div>
+                <div class="item-details">
+                  <h3>NEW YORK ANGUS</h3>
+                  <p>
+                    Este corte corresponde a la parte superior del lomo,
+                    excluyendo el hueso.
+                  </p>
+                  <div class="price">$599 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="picaña-prime.jpg" alt="Picañada Prime" />
+                </div>
+                <div class="item-details">
+                  <h3>PICAÑADA PRIME</h3>
+                  <p>
+                    De origen Brasileño, todo el mundo lo ha adoptado. Jugoso,
+                    excelente sabor, tierno. Es un lujo.
+                  </p>
+                  <div class="price">$604 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="rib-eye.jpeg" alt="Rib Eye" />
+                </div>
+                <div class="item-details">
+                  <h3>RIB EYE</h3>
+                  <p>
+                    El preferido de muchos por su sabor y suavidad superior.
+                  </p>
+                  <div class="price">$438 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="costilla_botanera.jpg" alt="Costilla Botanera" />
+                </div>
+                <div class="item-details">
+                  <h3>COSTILLA BOTANERA</h3>
+                  <p>
+                    Con 1 kilogramo de pura calidad, cada bocado te sorprenderá
+                    con su sabor y jugosidad.
+                  </p>
+                  <div class="price">$162 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-column">
+            <h2>Selecciones</h2>
+            <div class="selected-items" id="selected-items-cortes"></div>
+
+            <div class="subtotal-section">
+              <h2>Subtotal:</h2>
+              <div class="subtotal-amount">$0 pesos</div>
+            </div>
+
+            <a
+              href="../menu_bebidas/bebidas.html"
+              class="next-btn"
+              id="cortes-next"
+              >Siguiente</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts_cortes.js"></script>
+  </body>
+</html>

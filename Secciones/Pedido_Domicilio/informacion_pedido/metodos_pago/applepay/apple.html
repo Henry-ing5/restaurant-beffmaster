@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Apple Pay</title>
+    <link rel="stylesheet" href="styles-apple.css">
+</head>
+<body>
+    <div class="container">
+        <div class="applepay-form">
+            <div class="header">
+                <img src="applepay-icon.png" alt="Apple Pay" class="method-icon">
+                <h1>Pago con Apple Pay</h1>
+            </div>
+
+            <form id="form-applepay">
+                <div class="form-group">
+                    <label for="apple-id">Apple ID:</label>
+                    <input type="email" id="apple-id" placeholder="correo@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="verificacion">Código de verificación:</label>
+                    <input type="text" id="verificacion" 
+                           pattern="[0-9]{6}" 
+                           placeholder="Código de 6 dígitos"
+                           required>
+                </div>
+
+                <div class="button-group">
+                    <a href="../confirmacion/confirmacion.html" class="pay-btn">Autorizar pago</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts-apple.js"></script>
+</body>
+</html>

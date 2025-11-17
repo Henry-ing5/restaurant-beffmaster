@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beefmaster - Menú de Bebidas</title>
+    <link rel="stylesheet" href="styles_bebidas.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="menu-page" id="bebidas-page">
+        <div class="menu-header">
+          <h1>Menu</h1>
+        </div>
+
+        <div class="menu-content">
+          <div class="menu-column">
+            <h2>Bebidas</h2>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="margarita.jpeg" alt="Margarita" />
+                </div>
+                <div class="item-details">
+                  <h3>MARGARITA</h3>
+                  <p>
+                    Un cóctel compuesto por tequila, triple seco y jugo de
+                    limón.
+                  </p>
+                  <div class="price">$30 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="piña_colada.jpeg" alt="Piña Colada" />
+                </div>
+                <div class="item-details">
+                  <h3>PIÑA COLADA</h3>
+                  <p>
+                    Sus ingredientes principales son la piña, la crema de coco y
+                    el ron.
+                  </p>
+                  <div class="price">$120 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="cerveza.jpeg" alt="Cerveza" />
+                </div>
+                <div class="item-details">
+                  <h3>CERVEZA</h3>
+                  <p>Es una bebida alcohólica, no destilada de sabor amargo.</p>
+                  <div class="price">$40 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="vino_tinto.jpeg" alt="Vino Tinto" />
+                </div>
+                <div class="item-details">
+                  <h3>VINO TINTO</h3>
+                  <p>
+                    Bebida muy destacada a nivel del alcohol por producirse en
+                    un color rojizo intenso.
+                  </p>
+                  <div class="price">$119 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+
+              <div class="menu-item">
+                <div class="item-image">
+                  <img src="coca_cola.jpeg" alt="Coca Cola" />
+                </div>
+                <div class="item-details">
+                  <h3>COCA COLA 600 ML</h3>
+                  <div class="price">$30 pesos</div>
+                </div>
+                <div class="item-controls">
+                  <button class="decrease-btn">↓</button>
+                  <input
+                    type="number"
+                    class="quantity-input"
+                    value="0"
+                    min="0"
+                  />
+                  <button class="increase-btn">↑</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-column">
+            <h2>Selecciones</h2>
+            <div class="selected-items" id="selected-items-bebidas"></div>
+
+            <div class="subtotal-section">
+              <h2>Subtotal:</h2>
+              <div class="subtotal-amount">$0 pesos</div>
+            </div>
+
+            <a href="../resumen/resumen.html" class="next-btn" id="bebidas-next"
+              >Siguiente</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts_bebidas.js"></script>
+  </body>
+</html>

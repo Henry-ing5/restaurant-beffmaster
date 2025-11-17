@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Restaurante Rumbera</title>
+    <link rel="stylesheet" href="styles_reserva.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <!-- Formulario de Reserva -->
+        <div class="formulario-reserva">
+            <h1>Reserva tu Mesa</h1>
+            <form id="formReserva">
+                <div class="grupo-formulario">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" required>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="hora">Hora:</label>
+                    <input type="time" id="hora" required min="10:00" max="22:00">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="personas">Personas (1-12):</label>
+                    <input type="number" id="personas" min="1" max="12" required>
+                </div>
+
+                <!-- Campos ocultos y autocompletados -->
+                <div class="grupo-formulario" hidden>
+                    <input type="text" id="folioCliente">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label>Nombre:</label>
+                    <input type="text" id="nombreCliente" readonly>
+                </div>
+                
+                <div class="grupo-formulario">
+                    <label>Teléfono:</label>
+                    <input type="tel" id="telefonoCliente" readonly>
+                </div>
+                
+                <input type="hidden" id="folioCliente"> 
+
+                <button type="submit" class="boton-confirmar">Confirmar Reserva</button>
+            </form>
+        </div>
+
+        <!-- Mapa del Restaurante -->
+        <div class="mapa-restaurante">
+            <h2>Mapa de Mesas</h2>
+            
+            <!-- Zona Terraza -->
+            <div class="zona terraza">
+                <div class="titulo-zona">Terraza</div>
+                <div class="mesa m1">1</div>
+                <div class="mesa m2">2</div>
+                <div class="mesa m3">3</div>
+                <div class="pasillo"></div>
+                <div class="mesa m4">4</div>
+                <div class="mesa m5">5</div>
+                <div class="mesa m6">6</div>
+            </div>
+
+            <!-- Zona Principal -->
+            <div class="zona principal">
+                <div class="titulo-zona">Sala Principal</div>
+                <div class="fila">
+                    <div class="mesa m7">7</div>
+                    <div class="mesa m8">8</div>
+                    <div class="mesa m9">9</div>
+                    <div class="mesa m10">10</div>
+                </div>
+                <div class="pasillo-central"></div>
+                <div class="fila">
+                    <div class="mesa m11">11</div>
+                    <div class="mesa m12">12</div>
+                    <div class="mesa m13">13</div>
+                    <div class="mesa m14">14</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-reserva-exitosa" class="modal-reserva">
+        <div class="modal-contenido-reserva">
+            <h2>¡Reserva realizada con éxito! 🎉</h2>
+            <p>Tu mesa ha sido reservada correctamente.</p>
+            <button onclick="cerrarModalReserva()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="scripts_reserva.js"></script>
+</body>
+</html>

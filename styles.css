@@ -1,0 +1,231 @@
+/* styles/home.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+.contenedor {
+    display: flex;
+    height: 100vh;
+}
+
+/* ======= Sección Izquierda ======= */
+.seccion-izquierda {
+    flex: 0 0 45%;
+    padding: 5% 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+    min-height: 100vh;
+}
+
+.contenedor-logo {
+    width: 100%;
+    margin-bottom: 8vh; /* Reducido para subir elementos */
+    text-align: left;
+}
+
+.logo {
+    width: 80%;
+    max-width: 300px;
+}
+
+.titulo-lema {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 10vh; /* Reducido para subir el botón */
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: #2a2a2a;
+}
+
+.linea-lema {
+    display: block;
+    margin-bottom: 0.15em;
+}
+
+.contenedor-boton {
+    width: 100%;
+    margin-top: 6vh !important; /* Posición más alta */
+}
+
+.texto-servicio {
+    color: #7f8c8d;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.boton-principal {
+    background: #e74c3c;
+    color: white;
+    padding: 18px 0;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 320px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+}
+
+.boton-principal:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* ======= Sección Derecha ======= */
+.seccion-derecha {
+    flex: 0 0 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    overflow: hidden;
+    position: relative;
+    position: relative; /* Añadido para posicionar el horario */
+}
+
+.imagen-destacada {
+    width: 80vmin;
+    height: 80vmin;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 20px 40px rgb(255, 254, 254);
+    border: 8px solid #ffffff;
+    overflow: hidden;
+    animation: flotar 4s ease-in-out infinite;
+}
+
+.horario-atencion {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0,8);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    max-width: 250px;
+}
+
+.horario-atencion h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.horario-atencion p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .horario-atencion {
+        bottom: 20px;
+        right: 20px;
+        padding: 15px;
+        max-width: 200px;
+    }
+    
+    .horario-atencion h3 {
+        font-size: 1rem;
+    }
+    
+    .horario-atencion p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .horario-atencion {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+        max-width: 180px;
+    }
+}
+
+/* Animación flotante */
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 1200px) {
+    .logo {
+        width: 70%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo {
+        width: 65%;
+        max-width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor {
+        flex-direction: column;
+    }
+
+    .seccion-izquierda {
+        padding: 12% 10%;
+        min-height: 70vh;
+    }
+
+    .logo {
+        max-width: 200px;
+        margin-bottom: 6vh;
+    }
+
+    .imagen-destacada {
+        width: 70vw;
+        height: 70vw;
+        margin: 5vh 0;
+    }
+
+    .titulo-lema {
+        font-size: 2rem;
+        margin-bottom: 8vh;
+    }
+
+    .contenedor-boton {
+        margin-top: 4vh !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 180px;
+    }
+    
+    .titulo-lema {
+        font-size: 1.8rem;
+        margin-bottom: 6vh;
+    }
+    
+    .boton-principal {
+        font-size: 1rem;
+    }
+}

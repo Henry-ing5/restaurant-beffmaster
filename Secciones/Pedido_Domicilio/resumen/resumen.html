@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beefmaster - Resumen del Pedido</title>
+    <link rel="stylesheet" href="styles_resumen.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="resumen-page">
+        <div class="menu-header">
+          <h1>Resumen del Pedido</h1>
+          <div class="customer-id" id="customer-id"></div>
+        </div>
+
+        <div class="resumen-content">
+          <div class="seccion-pedido">
+            <h2>Cortes Seleccionados</h2>
+            <div id="resumen-cortes" class="items-resumen"></div>
+          </div>
+
+          <div class="seccion-pedido">
+            <h2>Bebidas Seleccionadas</h2>
+            <div id="resumen-bebidas" class="items-resumen"></div>
+          </div>
+
+          <div class="totales">
+            <div class="total-line">
+              <span>Subtotal Cortes:</span>
+              <span id="subtotal-cortes">$0 pesos</span>
+            </div>
+            <div class="total-line">
+              <span>Subtotal Bebidas:</span>
+              <span id="subtotal-bebidas">$0 pesos</span>
+            </div>
+            <div class="total-line">
+              <span>IVA (16%):</span>
+              <span id="iva">$0 pesos</span>
+            </div>
+            <div class="total-line total-final">
+              <span>Total a pagar:</span>
+              <span id="total-pagar">$0 pesos</span>
+            </div>
+            <!-- Agrega esto justo después de la sección de totales -->
+            <div class="boton-siguiente">
+              <a href="../informacion_pedido/informacion.html" class="next-btn"
+                >Siguiente</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts_resumen.js"></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: beige;
+    color: #3E2723; /* Texto principal café oscuro */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4E342E; 
+}
+
+/* Contenido del resumen */
+.resumen-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.seccion-pedido {
+    background-color: beige; 
+    color: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    color: #4E342E;
+}
+
+.seccion-pedido h2 {
+    margin-bottom: 15px;
+    color: #4E342E; 
+}
+
+.items-resumen {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-resumen {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #795548; /* Borde café medio */
+}
+
+/* Totales */
+.totales {
+    background-color: beige; 
+    color: #4E342E; 
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.total-final {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4E342E; 
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #795548; 
+}
+.boton-siguiente {
+    margin-top: 30px;
+}
+
+.next-btn {
+    background-color: #e60000;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.next-btn:hover {
+    background-color: #cc0000;
+}

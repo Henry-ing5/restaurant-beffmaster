@@ -1,0 +1,136 @@
+body{
+    background-color: #f9f9f9;
+}
+/* Estilos generales */
+.contenedor-servicios {
+    padding: 4rem 2rem;
+    background: beige;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.titulo-principal {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.subtitulo {
+    color: #000000;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    letter-spacing: 1px;
+}
+
+/* Grid de servicios */
+.grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+    max-width: 1400px; 
+    margin: 0 auto;
+    padding: 0 1rem;
+    border-color: #000000;
+}
+
+
+/* Tarjetas de servicio */
+.tarjeta-servicio {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-10px);
+}
+
+.contenedor-imagen {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.imagen-servicio {
+    width: 90;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-servicio:hover .imagen-servicio {
+    transform: scale(1.05);
+}
+
+.tarjeta-servicio h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 2rem 0;
+    padding: 0 2rem;
+}
+
+.boton-servicio {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 2rem;
+    transition: all 0.3s ease;
+}
+
+.boton-servicio:hover {
+    background: #c0392b;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .grid-servicios {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .contenedor-imagen {
+        height: 300px;
+    }
+    
+    .titulo-principal {
+        font-size: 2rem;
+    }
+    
+    .tarjeta-servicio h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .grid-servicios {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-servicios {
+        grid-template-columns: 1fr;
+    }
+    
+    .contenedor-imagen {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 1.8rem;
+    }
+    
+    .subtitulo {
+        font-size: 1rem;
+    }
+}

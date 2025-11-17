@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Confirmada</title>
+    <link rel="stylesheet" href="styles_confirmacion.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="contenedor-principal">
+        <div class="confirmacion-reserva">
+            <h1>✅ Reserva Confirmada</h1>
+            <div class="reserva-info">
+                <h2>Mesa Número</h2>
+                <div class="numero-mesa" id="numeroMesa"></div>
+                
+                <h3>Detalles de la reserva</h3>
+                <div class="detalle-fecha">
+                    <div class="detalle-item" id="fechaCompleta"></div>
+                    <div class="detalle-item" id="horaReserva"></div>
+                </div>
+                
+                <h3>Contacto</h3>
+                <div class="detalle-item" id="telefono"></div>
+            </div>
+
+            <div class="contenedor-botones">
+                <a href="../reserva.html" class="boton boton-reserva">Nueva Reserva</a>
+                <button class="boton boton-descargar" id="descargarTicket">Descargar Ticket</button>
+                <a href="../../secciones.html" class="boton boton-inicio">Volver al Inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts_confirmacion.js"></script>
+</body>
+</html>

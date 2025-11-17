@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beefmaster</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <!-- Sección izquierda -->
+      <div class="seccion-izquierda">
+        <img src="2.png" alt="Logo Beefmaster" class="logo" />
+        <h1 class="titulo-lema">Porque todos nos merecemos cosas únicas</h1>
+        <div class="contenedor-boton">
+          <p class="texto-servicio">SERVICIO EN LÍNEA</p>
+          <button class="boton-principal" onclick="navegarASecciones()">
+            ORDER NOW
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección derecha -->
+      <div class="seccion-derecha">
+        <img
+          src="plato_carne.png"
+          alt="Plato destacado"
+          class="imagen-destacada"
+        />
+        <div class="horario-atencion">
+          <h3>Horario de atención</h3>
+          <p>Lunes a Sábado: 10:00 am - 10:00 pm</p>
+          <p>Domingos: 10:00 am - 07:00 pm</p>
+        </div>
+      </div>
+      <div class="seccion-derecha">
+        <img
+          src="plato_carne.png"
+          alt="Plato destacado"
+          class="imagen-destacada"
+        />
+      </div>
+    </div>
+
+    <script>
+      function navegarASecciones() {
+          window.location.href = "Secciones/login.html";
+      }
+    </script>
+  </body>
+</html>

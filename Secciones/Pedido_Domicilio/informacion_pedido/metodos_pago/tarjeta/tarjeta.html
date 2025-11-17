@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta</title>
+    <link rel="stylesheet" href="styles-tarjeta.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card-form">
+            <div class="header">
+                <h1>Pago con Tarjeta</h1>
+            </div>
+
+            <form id="form-tarjeta">
+                <div class="form-group">
+                    <label for="numero">Número de tarjeta:</label>
+                    <input type="text" id="numero" pattern="\d{13,19}" required>
+                    <div class="card-icons">
+                        <img src="visa.png" alt="Visa">
+                        <img src="mastercard.png" alt="Mastercard">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del titular:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="row">
+                    <div class="form-group half">
+                        <label for="expiracion">Expiración (MM/AA):</label>
+                        <input type="text" id="expiracion" pattern="\d{2}/\d{2}" placeholder="MM/AA" required>
+                    </div>
+                    
+                    <div class="form-group half">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" pattern="\d{3,4}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cp">Código Postal:</label>
+                    <input type="text" id="cp" pattern="\d{5}" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="pay-btn">Pagar ahora</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts-tarjeta.js"></script>
+</body>
+</html>

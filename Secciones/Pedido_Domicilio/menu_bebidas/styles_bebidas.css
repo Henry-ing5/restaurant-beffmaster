@@ -1,0 +1,236 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: beige;
+    color: #3E2723; /* Texto principal café oscuro */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para el encabezado del menú */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4E342E; 
+}
+
+.customer-id {
+    font-size: 18px;
+}
+
+/* Estilos para el contenido del menú */
+.menu-content {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-column {
+    flex: 1;
+}
+
+.menu-column h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4E342E; 
+}
+
+/* Estilos para los elementos del menú */
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid #D7CCC8; 
+}
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.item-details p {
+    font-size: 14px;
+    color: #795548; 
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+/* Estilos para los controles de cantidad */
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 15px;
+}
+
+.decrease-btn, .increase-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #f3be00;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.decrease-btn:hover, .increase-btn:hover {
+    background-color: #e0ad00;
+}
+
+.quantity-input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #BCAAA4; 
+    background-color: #EFEBE9; 
+    color: #3E2723; 
+    border-radius: 3px;
+}
+
+/* Estilos para la sección de selecciones */
+.selected-items {
+    background-color: beige; 
+    color: #3E2723; 
+    padding: 15px;
+    min-height: 200px;
+    margin-bottom: 30px;
+    border-radius: 5px; 
+    border: 1px solid #D7CCC8;
+}
+
+.selected-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #EFEBE9;
+    border-radius: 5px;
+}
+
+.selected-item h3 {
+    font-size: 16px;
+}
+
+.selected-item .quantity-input {
+    width: 60px;
+}
+
+/* Estilos para la sección de subtotal */
+.subtotal-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f9f5f0;
+    border-radius: 5px;
+}
+
+.subtotal-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4E342E;
+}
+
+/* Estilos para el botón de siguiente */
+.next-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #e60000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .menu-content {
+        flex-direction: column;
+    }
+    
+    .menu-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .menu-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .item-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .item-controls {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,86 @@
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.confirmation-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #4CAF50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.check-icon {
+    width: 120px;
+    margin: 30px 0;
+    filter: drop-shadow(0 2px 4px rgba(76,175,80,0.3));
+}
+
+#download-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+}
+
+#download-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76,175,80,0.5);
+}
+
+#download-btn:active {
+    transform: translateY(0);
+}
+
+.boton-servicio {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.boton-servicio:hover {
+    background: #c0392b;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    transform: translateY(-2px);
+}
+
+.boton-inicio{
+    display: inline-block;
+    background: #061442;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.boton-inicio:hover {
+    background: #061442;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}

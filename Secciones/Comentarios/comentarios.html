@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios - Nuestro Restaurante</title>
+    <link rel="stylesheet" href="../styles_secciones.css">
+    <link rel="stylesheet" href="styles_comentarios.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="contenedor-comentarios">
+        <h1 class="titulo-principal">Comentarios de Nuestros Clientes</h1>
+        <p class="subtitulo">Conoce las experiencias de quienes nos han visitado</p>
+        
+        <div class="formulario-comentario">
+            <h2>Deja tu comentario</h2>
+            <form id="form-comentario">
+                <div class="campo-formulario">
+                    <label for="nombre-usuario">Nombre:</label>
+                    <input type="text" id="nombre-usuario" required>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="texto-comentario">Tu comentario:</label>
+                    <textarea id="texto-comentario" rows="4" required></textarea>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label>Tu valoración:</label>
+                    <div class="estrellas-valoracion">
+                        <i class="fas fa-star" data-valor="1"></i>
+                        <i class="fas fa-star" data-valor="2"></i>
+                        <i class="fas fa-star" data-valor="3"></i>
+                        <i class="fas fa-star" data-valor="4"></i>
+                        <i class="fas fa-star" data-valor="5"></i>
+                    </div>
+                    <input type="hidden" id="valoracion" value="0">
+                </div>
+                
+                <button type="submit" class="boton-publicar">Publicar comentario</button>
+            </form>
+        </div>
+        
+        <div class="listado-comentarios">
+            <h2>Lo que opinan nuestros clientes</h2>
+            <div id="lista-comentarios">
+                <!-- Aquí se cargarán los comentarios dinámicamente -->
+                <div class="mensaje-cargando">Cargando comentarios...</div>
+            </div>
+        </div>
+        
+        <div class="boton-volver">
+            <a href="../secciones.html" class="boton-servicio">Volver al menú principal</a>
+        </div>
+    </div>
+
+    <div id="modal-exito-comentario" class="modal-comentario-exito">
+        <div class="modal-contenido-comentario">
+            <h2>¡Comentario publicado! ✅</h2>
+            <p>Tu comentario ha sido publicado con éxito.</p>
+            <button onclick="cerrarModalComentario()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="scripts_comentarios.js"></script>
+</body>
+</html>

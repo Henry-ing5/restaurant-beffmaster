@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles_login.css" />
+    <style>
+      #loading {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        color: #2c3e50;
+        z-index: 1000;
+      }
+      .password-container {
+        position: relative;
+      }
+      .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading">Verificando...</div>
+    <div class="container">
+      <div class="card-form">
+        <div class="header">
+          <h1>Iniciar Sesión</h1>
+        </div>
+        <form id="form-login">
+          <div class="form-group">
+            <label>Correo electrónico:</label>
+            <input type="email" id="email" required />
+          </div>
+
+          <div class="form-group">
+            <label>Contraseña:</label>
+            <div class="password-container">
+              <input type="password" id="password" required />
+              <button
+                type="button"
+                class="toggle-password"
+                onclick="togglePassword()"
+              >
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="login-btn" type="button" onclick="navegarlogin()">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+
+        <div class="header" style="margin-top: 2rem">
+          <h2>¿Cliente nuevo?</h2>
+        </div>
+        <div class="button-group">
+          <button class="login-btn" type="button" onclick="navegarregistro()">
+            Registrarse
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de error -->
+    <div id="modal-error-login" class="modal-error">
+      <div class="modal-contenido-error">
+        <h2>❌ Error al iniciar sesión</h2>
+        <p id="mensaje-error-login">Correo o contraseña incorrectos</p>
+        <button onclick="cerrarModalErrorLogin()">Cerrar</button>
+      </div>
+    </div>
+    <script src="scripts_login.js"></script>
+  </body>
+</html>
