@@ -1,3 +1,6 @@
+body { 
+    background-color: beige;
+}
 /* Estilos para la sección de comentarios */
 .contenedor-comentarios {
     padding: 2px;

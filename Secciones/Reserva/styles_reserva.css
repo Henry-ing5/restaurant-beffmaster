@@ -84,46 +84,30 @@ input:focus {
     font-size: 0.9rem;
 }
 
-/* Disposición de Mesas */
-.terraza {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: center;
-    background: rgba(46, 204, 113, 0.05);
-}
-
-.principal {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.fila {
-    display: flex;
-    justify-content: space-around;
-}
-
-.pasillo, .pasillo-central {
-    background: #bdc3c7;
+/* Contenedores de imágenes de fondo */
+.contenedor-imagen {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin: 1rem 0;
-    border-radius: 5px;
 }
 
-.pasillo {
-    height: 20px;
-    grid-column: span 3;
+.terraza .contenedor-imagen {
+    background-image: url('mapa_terraza.png');
 }
 
-.pasillo-central {
-    width: 80%;
-    height: 30px;
+.principal .contenedor-imagen {
+    background-image: url('mapa_sala_principal.png');
 }
 
 /* Estilos de Mesas */
 .mesa {
-    width: 60px;
-    height: 60px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
     background: white;
     border: 3px solid #e74c3c;
     border-radius: 50%;
@@ -134,6 +118,8 @@ input:focus {
     transition: all 0.3s ease;
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    z-index: 10;
+    font-size: 14px;
 }
 
 .mesa.seleccionada {
@@ -143,6 +129,53 @@ input:focus {
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3) !important;
     border-color: #c0392b !important;
 }
+
+/* Mesa ocupada - Sin transparencia */
+.mesa.ocupada {
+    background: #7f8c8d !important;
+    border-color: #636e72 !important;
+    cursor: not-allowed !important;
+    color: #fff !important;
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.mesa.ocupada::after {
+    content: "OCUPADA";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e74c3c;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Posicionamiento EXACTO de mesas en Terraza según imagen */
+.terraza .m1 { top: 22%; left: 18.4%; }
+.terraza .m2 { top: 22%; left: 37%; }
+.terraza .m3 { top: 22%; left: 56%; }
+.terraza .m4 { top: 60%; left: 18.4%; }
+.terraza .m5 { top: 60%; left: 37%; }
+.terraza .m6 { top: 60%; left: 56%; }
+.terraza .m7 { top: 60%; left: 74%; }
+.terraza .m8 { top: 20%; left: 74%; }
+
+/* Posicionamiento EXACTO de mesas en Sala Principal según imagen */
+.principal .m9 { top: 20%; left: 15%; }
+.principal .m10 { top: 20%; left: 36%; }
+.principal .m11 { top: 20%; left: 56.5%; }
+.principal .m12 { top: 20%; left: 76.2%; }
+.principal .m13 { top: 63%; left: 15.3%; }
+.principal .m14 { top: 63%; left: 36.3%; }
+.principal .m15 { top: 63%; left: 56.6%; }
+.principal .m16 { top: 63%; left: 76.4%; }
 
 /* Botón y Info */
 .boton-confirmar {
@@ -177,46 +210,15 @@ input:focus {
         grid-template-columns: 1fr;
     }
     
-    .terraza {
-        grid-template-columns: repeat(2, 1fr);
+    .contenedor-imagen {
+        height: 200px;
     }
     
-    .fila {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+    .mesa {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
     }
-    
-    .pasillo-central {
-        width: 100%;
-        height: 15px;
-    }
-}
-
-.mesa.ocupada {
-    background: #95a5a6 !important;
-    border-color: #7f8c8d !important;
-    cursor: not-allowed !important;
-    color: #fff;
-    opacity: 0.8;
-    box-shadow: none !important;
-    transform: none !important;
-}
-
-.mesa.ocupada::after {
-    content: "OCUPADA";
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #e74c3c;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    white-space: nowrap;
-    z-index: 10;
 }
 
 /* Modal de reserva exitosa */

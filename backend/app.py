@@ -81,6 +81,7 @@ def verificar_cliente():
         logger.error(f"Error: {str(e)}")
         return jsonify({"error": "Error interno"}), 500
 
+
 @app.route('/registrar-cliente', methods=['POST'])
 def registrar_cliente():
     try:
@@ -130,7 +131,6 @@ def registrar_cliente():
         logger.error(f"Error: {str(e)}")
         return jsonify({"error": "Error interno del servidor"}), 500
 
-# ... (el resto de tus funciones permanecen igual)
 @app.route('/guardar-domicilio', methods=['POST'])
 def guardar_domicilio():
     conn = None
@@ -172,11 +172,11 @@ def guardar_domicilio():
             
         folio_d = f"DOM-{new_seq:07d}" # Formato con 7 dígitos
 
-        # Insertar en domicilio
+        # Insertar en domicilio con coordenadas
         cursor.execute('''
             INSERT INTO domicilio 
-            (folio_d, folio_cliente, cortes, bebidas, direccion, referencia, total)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            (folio_d, folio_cliente, cortes, bebidas, direccion, referencia, total, latitud, longitud)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         ''', (
             folio_d,
             data['cliente_folio'],
@@ -184,7 +184,9 @@ def guardar_domicilio():
             json.dumps(nombres_bebidas),
             data['direccion'],
             data['referencia'],
-            data['total']
+            data['total'],
+            data.get('latitud'),  # Nuevo campo
+            data.get('longitud')  # Nuevo campo
         ))
         
         conn.commit()
@@ -204,7 +206,7 @@ def obtener_pedido(folio_d):
         conn = get_db()
         cursor = conn.cursor(dictionary=True)
         
-        # Obtener datos del domicilio y cliente
+        # Obtener datos del domicilio y cliente (incluyendo coordenadas)
         cursor.execute('''
             SELECT d.*, c.nombre, c.telefono 
             FROM domicilio d
@@ -220,7 +222,13 @@ def obtener_pedido(folio_d):
         # Convertir JSON a listas y total a float
         pedido['cortes'] = json.loads(pedido['cortes'])
         pedido['bebidas'] = json.loads(pedido['bebidas'])
-        pedido['total'] = float(pedido['total'])  # <-- Conversión crítica
+        pedido['total'] = float(pedido['total'])
+        
+        # Convertir coordenadas a float si existen
+        if pedido['latitud']:
+            pedido['latitud'] = float(pedido['latitud'])
+        if pedido['longitud']:
+            pedido['longitud'] = float(pedido['longitud'])
         
         return jsonify(pedido), 200
         

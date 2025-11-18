@@ -183,9 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             sessionStorage.setItem('reservaData', JSON.stringify(reservaData));
             
-            // Redirigir a confirmación
-            const folioReserva = resultado.folio;
-
             // Mostrar modal
             document.getElementById('modal-reserva-exitosa').style.display = 'flex';        
                 
@@ -201,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         iniciarActualizacion();
     }, 500);
 });
+
 function cerrarModalReserva() {
     document.getElementById('modal-reserva-exitosa').style.display = 'none';
     window.location.href = `Confirmacion/confirmacion.html?folio=${JSON.parse(sessionStorage.getItem('reservaData')).folio}`;
