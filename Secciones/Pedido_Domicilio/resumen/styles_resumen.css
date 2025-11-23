@@ -55,6 +55,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .item-resumen {

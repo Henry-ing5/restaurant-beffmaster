@@ -176,16 +176,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/guardar-domicilio', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
+            // Guardar pedido en Firestore
+            const domiciliosRef = db.collection('domicilios');
+            const docRef = await domiciliosRef.add({
+                folio_cliente: datos.cliente_folio,
+                cortes: datos.alimentos.cortes,
+                bebidas: datos.alimentos.bebidas,
+                direccion: datos.direccion,
+                referencia: datos.referencia,
+                total: datos.total,
+                latitud: datos.latitud,
+                longitud: datos.longitud,
+                metodo_pago: null, // Se actualizará después
+                fecha_pedido: firebase.firestore.FieldValue.serverTimestamp()
             });
 
-            const resultado = await response.json();
-            if (!response.ok) throw new Error(resultado.error);
+            const folio_d = `DOM-${docRef.id.substring(0, 8).toUpperCase()}`;
 
-            sessionStorage.setItem('ultimoFolio', resultado.folio);
+            sessionStorage.setItem('ultimoFolio', docRef.id);
+            sessionStorage.setItem('ultimoFolioFormato', folio_d);
             coordenadasActuales = { latitud: null, longitud: null };
             window.location.href = "metodos_pago/metodos_pago.html";
             

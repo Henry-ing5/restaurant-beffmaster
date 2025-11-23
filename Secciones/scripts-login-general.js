@@ -17,26 +17,29 @@ async function navegarlogin() {
     }
 
     try {
-        // Conectar con el backend para verificar credenciales
-        const response = await fetch('http://localhost:5000/verificar-cliente', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                correo: email,
-                password: password
-            })
-        });
+        // Buscar cliente en Firestore por email
+        const clientesRef = db.collection('clientes');
+        const snapshot = await clientesRef.where('email', '==', email).get();
 
-        const resultado = await response.json();
-        console.log("Respuesta del servidor:", resultado);
+        if (snapshot.empty) {
+            // No se encontró el correo
+            document.getElementById("mensaje-error-login").textContent = "Correo no registrado";
+            document.getElementById("modal-error-login").style.display = "flex";
+            return;
+        }
 
-        if (response.ok && resultado.existe) {
+        // Obtener el primer (y único) documento
+        const clienteDoc = snapshot.docs[0];
+        const cliente = clienteDoc.data();
+
+        // Verificar contraseña (texto plano)
+        if (cliente.password === password) {
             // Guardar sesión en localStorage con todos los datos del cliente
             localStorage.setItem("usuarioAutenticado", JSON.stringify({
                 email: email,
-                nombre: resultado.nombre,
-                telefono: resultado.telefono,
-                folio: resultado.folio,
+                nombre: cliente.nombre,
+                telefono: cliente.telefono,
+                folio: clienteDoc.id, // Usar el ID del documento como folio
                 timestamp: new Date().getTime()
             }));
             
@@ -44,15 +47,13 @@ async function navegarlogin() {
             // Redirigir a secciones
             window.location.href = "secciones.html";
         } else {
-            // Mostrar error
-            const mensajeError = resultado.error || "Correo o contraseña incorrectos";
-            console.error("Error de autenticación:", mensajeError);
-            document.getElementById("mensaje-error-login").textContent = mensajeError;
+            // Contraseña incorrecta
+            document.getElementById("mensaje-error-login").textContent = "Contraseña incorrecta";
             document.getElementById("modal-error-login").style.display = "flex";
         }
     } catch (error) {
         console.error("Error en login:", error);
-        document.getElementById("mensaje-error-login").textContent = "Error al conectar con el servidor. Asegúrate de que el backend está corriendo en localhost:5000";
+        document.getElementById("mensaje-error-login").textContent = "Error al iniciar sesión. Verifica tu conexión a Internet.";
         document.getElementById("modal-error-login").style.display = "flex";
     }
 }

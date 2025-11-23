@@ -33,23 +33,29 @@ async function irASiguiente() {
     }
 
     try {
-        // Registrar cliente en backend
-        const response = await fetch('http://localhost:5000/registrar-cliente', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                nombre, 
-                telefono, 
-                correo, 
-                password 
-            })
-        });
-
-        const resultado = await response.json();
-
-        if (!response.ok) {
-            throw new Error(resultado.error || "Error en el registro");
+        // Verificar si el correo ya está registrado
+        const clientesRef = db.collection('clientes');
+        const emailQuery = await clientesRef.where('email', '==', correo).get();
+        
+        if (!emailQuery.empty) {
+            throw new Error("Correo ya está registrado. Use otro.");
         }
+
+        // Verificar si el teléfono ya está registrado
+        const telefonoQuery = await clientesRef.where('telefono', '==', telefono).get();
+        
+        if (!telefonoQuery.empty) {
+            throw new Error("Teléfono ya está registrado. Use otro.");
+        }
+
+        // Registrar cliente en Firestore (sin encriptar la contraseña)
+        await clientesRef.add({
+            nombre: nombre,
+            telefono: telefono,
+            email: correo,
+            password: password, // Guardar en texto plano
+            fecha_registro: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
         // Mostrar modal de éxito
         document.getElementById('modal-exito').style.display = 'flex';
@@ -57,14 +63,7 @@ async function irASiguiente() {
     } catch (error) {
         const modalError = document.getElementById('modal-error-registro');
         const mensajeError = document.getElementById('mensaje-error-registro');
-        
-        if (error.message.includes('duplicad')) {
-            const campo = error.message.includes('correo') ? 'Correo' : 'Teléfono';
-            mensajeError.textContent = `${campo} ya está registrado. Use otro.`;
-        } else {
-            mensajeError.textContent = error.message;
-        }
-        
+        mensajeError.textContent = error.message;
         modalError.style.display = 'flex';
         console.error("Detalles del error:", error);
     }

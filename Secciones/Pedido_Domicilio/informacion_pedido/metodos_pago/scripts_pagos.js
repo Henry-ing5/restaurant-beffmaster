@@ -11,20 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Guardar en sessionStorage para uso en la página de confirmación
             sessionStorage.setItem('metodoPago', metodo);
             
-            // Actualizar el pedido en la base de datos con el método de pago
-            const response = await fetch(`http://localhost:5000/actualizar-metodo-pago`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    folio_d: folio_d,
-                    metodo_pago: metodo
-                })
+            // Actualizar el pedido en Firestore con el método de pago
+            await db.collection('domicilios').doc(folio_d).update({
+                metodo_pago: metodo
             });
 
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.error || "Error al actualizar método de pago");
-            }
 
             // Redirigir a la página correspondiente según el método de pago
             let ruta;

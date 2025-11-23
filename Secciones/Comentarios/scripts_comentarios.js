@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const API_URL = 'http://localhost:5000'; // Ajusta según tu configuración
     let valoracionActual = 0;
     
     // Cargar comentarios al iniciar
@@ -29,25 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Enviar comentario al servidor
-        fetch(`${API_URL}/guardar-comentario`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                nombre_usuario: nombreUsuario,
-                comentario: textoComentario,
-                valoracion: valoracionActual
-            })
+        // Enviar comentario a Firestore
+        db.collection('comentarios').add({
+            nombre_usuario: nombreUsuario,
+            comentario: textoComentario,
+            valoracion: valoracionActual,
+            fecha_creacion: firebase.firestore.FieldValue.serverTimestamp()
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al guardar el comentario');
-            }
-            return response.json();
-        })
-        .then(data => {
+        .then(() => {
             // Limpiar formulario
             document.getElementById('nombre-usuario').value = '';
             document.getElementById('texto-comentario').value = '';
@@ -81,27 +69,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const listaComentarios = document.getElementById('lista-comentarios');
         listaComentarios.innerHTML = '<div class="mensaje-cargando">Cargando comentarios...</div>';
         
-        fetch(`${API_URL}/obtener-comentarios`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al cargar los comentarios');
-                }
-                return response.json();
-            })
-            .then(data => {
+        // Obtener comentarios de Firestore ordenados por fecha
+        db.collection('comentarios')
+            .orderBy('fecha_creacion', 'desc')
+            .get()
+            .then(snapshot => {
                 listaComentarios.innerHTML = '';
                 
-                if (!data.comentarios || data.comentarios.length === 0) {
-                    listaComentarios.innerHTML = '<div class="sin-comentarios">No hay comentarios aún. ¡Sé el primero en opinar!</div>';
+                if (snapshot.empty) {
+                    listaComentarios.innerHTML = '<div class="sin-comentarios">¡No hay comentarios aún. Sé el primero en opinar!</div>';
                     return;
                 }
                 
-                data.comentarios.forEach(comentario => {
-                    const fechaFormateada = new Date(comentario.fecha_creacion).toLocaleDateString('es-ES', {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric'
-                    });
+                snapshot.forEach(doc => {
+                    const comentario = doc.data();
+                    const fechaFormateada = comentario.fecha_creacion ? 
+                        comentario.fecha_creacion.toDate().toLocaleDateString('es-ES', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        }) : 'Fecha desconocida';
                     
                     const estrellas = '★'.repeat(comentario.valoracion) + '☆'.repeat(5 - comentario.valoracion);
                     

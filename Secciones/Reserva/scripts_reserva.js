@@ -22,13 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             console.log(`Consultando mesas ocupadas para la fecha: ${fecha}`);
             
-            const response = await fetch(`http://localhost:5000/mesas-ocupadas?fecha=${fecha}`);
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
+            // Consultar Firestore por reservas de la fecha seleccionada
+            const reservasRef = db.collection('reservas');
+            const snapshot = await reservasRef.where('fecha', '==', fecha).get();
             
-            const data = await response.json();
-            console.log("Mesas ocupadas recibidas:", data.mesas_ocupadas);
+            const mesas_ocupadas = [];
+            snapshot.forEach(doc => {
+                mesas_ocupadas.push(String(doc.data().numero_mesa));
+            });
+            
+            console.log("Mesas ocupadas recibidas:", mesas_ocupadas);
             
             // Primero, restablecer todas las mesas
             mesas.forEach(mesa => {
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Luego, marcar las ocupadas
             mesas.forEach(mesa => {
                 const numeroMesa = mesa.textContent.trim();
-                if (data.mesas_ocupadas.includes(numeroMesa)) {
+                if (mesas_ocupadas.includes(numeroMesa)) {
                     console.log(`Mesa ${numeroMesa} marcada como ocupada`);
                     mesa.classList.add('ocupada');
                     mesa.style.pointerEvents = 'none';
@@ -158,23 +161,27 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Enviando datos de reserva:", datos);
     
         try {
-            const response = await fetch('http://localhost:5000/guardar-reserva', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
+            // Guardar reserva en Firestore
+            const reservasRef = db.collection('reservas');
+            const docRef = await reservasRef.add({
+                numero_mesa: datos.numero_mesa,
+                numero_personas: datos.numero_personas,
+                hora: datos.hora,
+                fecha: datos.fecha,
+                folio_c: datos.folio_c,
+                fecha_creacion: firebase.firestore.FieldValue.serverTimestamp()
             });
             
-            const resultado = await response.json();
-            if (!response.ok) throw new Error(resultado.error || 'Error al guardar la reserva');
-        
-            console.log("Reserva exitosa:", resultado);
+            const folio_r = `RE-${docRef.id.substring(0, 8).toUpperCase()}`;
+            
+            console.log("Reserva exitosa, folio:", folio_r);
             
             // Actualizar inmediatamente
             await actualizarMesasOcupadas(datos.fecha);
             
             // Guardar datos de la reserva en sessionStorage
             const reservaData = {
-                folio: resultado.folio,  // Usar el folio devuelto por el servidor
+                folio: folio_r,  // Usar el folio generado
                 mesa: datos.numero_mesa,
                 fecha: datos.fecha,
                 hora: datos.hora,
