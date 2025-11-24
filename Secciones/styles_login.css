@@ -53,6 +53,8 @@ input {
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s;
+    min-height: 44px;
+    box-sizing: border-box;
 }
 
 input:focus {
@@ -75,6 +77,8 @@ input:focus {
     color: #666;
     font-size: 16px;
     padding: 5px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 small {
@@ -100,10 +104,15 @@ small {
     font-size: 16px;
     font-weight: 600;
     transition: background 0.3s;
+    min-height: 50px;
 }
 
 .login-btn:hover {
     background: #c0392b;
+}
+
+.login-btn:active {
+    transform: scale(0.98);
 }
 
 /* Modal de éxito */
@@ -126,6 +135,7 @@ small {
     border-radius: 10px;
     text-align: center;
     max-width: 400px;
+    width: 90%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     color: white;
 }
@@ -145,6 +155,7 @@ small {
     margin-top: 1rem;
     transition: background 0.3s;
     font-weight: 600;
+    min-height: 44px;
 }
 
 .modal-contenido button:hover {
@@ -172,6 +183,7 @@ small {
     border-radius: 10px;
     text-align: center;
     max-width: 400px;
+    width: 90%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     color: white;
 }
@@ -191,9 +203,133 @@ small {
     margin-top: 1rem;
     font-weight: 600;
     transition: all 0.3s;
+    min-height: 44px;
 }
 
 .modal-contenido-error button:hover {
     background: #e74c3c;
     color: white;
+}
+
+/* ======= Responsive Design ======= */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .container {
+        margin: 1.5rem auto;
+        padding: 0 15px;
+    }
+    
+    .card-form {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-contenido,
+    .modal-contenido-error {
+        padding: 1.5rem;
+        margin: 0 15px;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 480px) {
+    .container {
+        margin: 1rem auto;
+        padding: 0 12px;
+    }
+    
+    .card-form {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    label {
+        font-size: 15px;
+        margin-bottom: 0.4rem;
+    }
+    
+    input {
+        padding: 11px;
+        font-size: 16px; /* Evita zoom en iOS */
+    }
+    
+    .login-btn {
+        padding: 13px 20px;
+        font-size: 15px;
+    }
+    
+    .button-group {
+        gap: 12px;
+        margin-top: 1.5rem;
+    }
+    
+    .modal-contenido,
+    .modal-contenido-error {
+        padding: 1.25rem;
+    }
+    
+    .modal-contenido h2,
+    .modal-contenido-error h2 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-contenido button,
+    .modal-contenido-error button {
+        padding: 11px 20px;
+        font-size: 15px;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 375px) {
+    .container {
+        margin: 0.75rem auto;
+        padding: 0 10px;
+    }
+    
+    .card-form {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+    }
+    
+    input {
+        padding: 10px;
+    }
+    
+    .login-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    
+    .modal-contenido,
+    .modal-contenido-error {
+        padding: 1rem;
+    }
 }

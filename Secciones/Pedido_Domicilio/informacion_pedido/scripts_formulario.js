@@ -1,205 +1,226 @@
-// scripts_formulario.js - SOLO PositionStack
+// scripts_formulario.js - BigDataCloud API (HTTPS gratuito)
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector(".delivery-form");
-    const usuarioAutenticado = JSON.parse(localStorage.getItem('usuarioAutenticado')) || {};
-    const btnUbicacion = document.getElementById('btn-ubicacion');
-    
-    let coordenadasActuales = { latitud: null, longitud: null };
-    
-    // 🔑 REEMPLAZA ESTA API KEY CON LA TUYA
-    const POSITIONSTACK_API_KEY = '695d811b232ecf07c226a55153c8ddcd'; // Regístrate en positionstack.com
-    
-    if (!usuarioAutenticado.folio) {
-        window.location.href = '../../login.html';
-        return;
+  const form = document.querySelector(".delivery-form");
+  const usuarioAutenticado =
+    JSON.parse(localStorage.getItem("usuarioAutenticado")) || {};
+  const btnUbicacion = document.getElementById("btn-ubicacion");
+
+  let coordenadasActuales = { latitud: null, longitud: null };
+
+  // BigDataCloud - API GRATUITA con HTTPS (10k requests/mes)
+  // NO requiere API key, funciona en móviles con HTTPS
+
+  if (!usuarioAutenticado.folio) {
+    window.location.href = "../../login.html";
+    return;
+  }
+
+  const autocompletarCampos = () => {
+    document.getElementById("nombre").value = usuarioAutenticado.nombre || "";
+    document.getElementById("telefono").value =
+      usuarioAutenticado.telefono || "";
+    document.getElementById("nombre").readOnly = true;
+    document.getElementById("telefono").readOnly = true;
+  };
+  autocompletarCampos();
+
+  const obtenerUbicacionActual = () => {
+    btnUbicacion.classList.add("loading");
+    btnUbicacion.disabled = true;
+
+    if (!navigator.geolocation) {
+      alert("Tu navegador no soporta la geolocalización.");
+      btnUbicacion.classList.remove("loading");
+      btnUbicacion.disabled = false;
+      return;
     }
 
-    const autocompletarCampos = () => {
-        document.getElementById('nombre').value = usuarioAutenticado.nombre || "";
-        document.getElementById('telefono').value = usuarioAutenticado.telefono || "";
-        document.getElementById('nombre').readOnly = true;
-        document.getElementById('telefono').readOnly = true;
+    // Configuración optimizada para móviles
+    const opciones = {
+      enableHighAccuracy: true,
+      timeout: 20000, // 20 segundos (redes móviles pueden ser lentas)
+      maximumAge: 0, // No usar caché
     };
-    autocompletarCampos();
 
-    const obtenerUbicacionActual = () => {
-        btnUbicacion.classList.add('loading');
-        
-        if (!navigator.geolocation) {
-            alert("Tu navegador no soporta la geolocalización.");
-            btnUbicacion.classList.remove('loading');
-            return;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitud = position.coords.latitude;
+        const longitud = position.coords.longitude;
+
+        coordenadasActuales.latitud = latitud;
+        coordenadasActuales.longitud = longitud;
+
+        // Usar BigDataCloud con HTTPS
+        obtenerDireccionBigDataCloud(latitud, longitud);
+      },
+      (error) => {
+        btnUbicacion.classList.remove("loading");
+        btnUbicacion.disabled = false;
+        let mensajeError = "No se pudo obtener tu ubicación.\n\n";
+
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            mensajeError +=
+              "Por favor, permite el acceso a tu ubicación en la configuración del navegador.";
+            break;
+          case error.POSITION_UNAVAILABLE:
+            mensajeError +=
+              "Información de ubicación no disponible. Verifica que el GPS esté activado.";
+            break;
+          case error.TIMEOUT:
+            mensajeError +=
+              "La solicitud de ubicación tardó demasiado. Intenta de nuevo o ingresa tu dirección manualmente.";
+            break;
+          default:
+            mensajeError +=
+              "Error desconocido. Ingresa tu dirección manualmente.";
+            break;
         }
-        
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const latitud = position.coords.latitude;
-                const longitud = position.coords.longitude;
-                
-                coordenadasActuales.latitud = latitud;
-                coordenadasActuales.longitud = longitud;
-                
-                // Usar SOLO PositionStack
-                obtenerDireccionPositionStack(latitud, longitud);
-            },
-            (error) => {
-                btnUbicacion.classList.remove('loading');
-                let mensajeError = "No se pudo obtener tu ubicación. ";
-                
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        mensajeError += "Permiso de ubicación denegado.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        mensajeError += "Información de ubicación no disponible.";
-                        break;
-                    case error.TIMEOUT:
-                        mensajeError += "Solicitud de ubicación expirada.";
-                        break;
-                    default:
-                        mensajeError += "Error desconocido.";
-                        break;
-                }
-                alert(mensajeError);
-            },
-            { enableHighAccuracy: true, timeout: 15000 }
-        );
-    };
-    
-    const obtenerDireccionPositionStack = (latitud, longitud) => {
-        // Verificar si hay API key
-        if (POSITIONSTACK_API_KEY === 'tu_api_key_aqui') {
-            btnUbicacion.classList.remove('loading');
-            alert("Necesitas registrar una API key de PositionStack. Ve a positionstack.com y obtén una clave gratuita.");
-            return;
+        alert(mensajeError);
+      },
+      opciones
+    );
+  };
+
+  const obtenerDireccionBigDataCloud = (latitud, longitud) => {
+    // BigDataCloud - Reverse Geocoding GRATUITO con HTTPS
+    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitud}&longitude=${longitud}&localityLanguage=es`;
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
         }
-        
-        const url = `http://api.positionstack.com/v1/reverse?access_key=${POSITIONSTACK_API_KEY}&query=${latitud},${longitud}&limit=1&output=json`;
-        
-        fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-                return response.json();
-            })
-            .then(data => {
-                btnUbicacion.classList.remove('loading');
-                console.log("Datos PositionStack:", data);
-                
-                if (data && data.data && data.data.length > 0) {
-                    const direccion = construirDireccionPositionStack(data);
-                    document.getElementById('direccion').value = direccion;
-                } else {
-                    alert("No se pudo obtener la dirección. Ingresa manualmente.");
-                }
-            })
-            .catch(error => {
-                btnUbicacion.classList.remove('loading');
-                console.error("Error PositionStack:", error);
-                alert("Error al obtener dirección. Ingresa manualmente.");
-            });
-    };
-    
-    const construirDireccionPositionStack = (data) => {
-        const location = data.data[0];
-        let direccionParts = [];
-        
-        // Calle - PositionStack tiene buena estructura para calles
-        if (location.street) {
-            direccionParts.push(location.street);
-        } else if (location.name) {
-            direccionParts.push(location.name);
+        return response.json();
+      })
+      .then((data) => {
+        btnUbicacion.classList.remove("loading");
+        btnUbicacion.disabled = false;
+        console.log("Datos BigDataCloud:", data);
+
+        if (data && data.locality) {
+          const direccion = construirDireccionBigDataCloud(data);
+          document.getElementById("direccion").value = direccion;
         } else {
-            direccionParts.push("Vial sin nombre");
+          alert(
+            "No se pudo obtener la dirección exacta. Por favor ingresa tu dirección manualmente."
+          );
         }
-        
-        // Número de casa (si está disponible)
-        if (location.number) {
-            // Agregar número al final de la calle
-            direccionParts[direccionParts.length - 1] += ` ${location.number}`;
-        }
-        
-        // Colonia/Localidad - PositionStack es bueno para esto
-        if (location.locality) {
-            direccionParts.push(location.locality);
-        } else if (location.neighbourhood) {
-            direccionParts.push(location.neighbourhood);
-        } else if (location.district) {
-            direccionParts.push(location.district);
-        }
-        
-        // Código Postal
-        if (location.postal_code) {
-            direccionParts.push(location.postal_code);
-        }
-        
-        // Municipio
-        if (location.county) {
-            direccionParts.push(location.county);
-        } else if (location.municipality) {
-            direccionParts.push(location.municipality);
-        }
-        
-        // Estado
-        if (location.region) {
-            direccionParts.push(location.region);
-        } else if (location.state) {
-            direccionParts.push(location.state);
-        }
-        
-        return direccionParts.join(', ');
+      })
+      .catch((error) => {
+        btnUbicacion.classList.remove("loading");
+        btnUbicacion.disabled = false;
+        console.error("Error BigDataCloud:", error);
+        alert(
+          "Error al obtener dirección desde el servidor. Por favor ingresa tu dirección manualmente."
+        );
+      });
+  };
+
+  const construirDireccionBigDataCloud = (data) => {
+    let direccionParts = [];
+
+    // Calle o nombre del lugar
+    if (data.localityInfo && data.localityInfo.administrative) {
+      // Buscar la calle en los niveles administrativos
+      const nivelCalle = data.localityInfo.administrative.find(
+        (nivel) => nivel.order >= 8
+      );
+      if (nivelCalle && nivelCalle.name) {
+        direccionParts.push(nivelCalle.name);
+      }
+    }
+
+    // Si no hay calle específica, usar locality
+    if (direccionParts.length === 0 && data.locality) {
+      direccionParts.push(data.locality);
+    }
+
+    // Colonia/Localidad
+    if (data.city && data.city !== data.locality) {
+      direccionParts.push(data.city);
+    } else if (data.principalSubdivision) {
+      // Usar subdivision si no hay city
+      direccionParts.push(data.principalSubdivision);
+    }
+
+    // Código Postal
+    if (data.postcode) {
+      direccionParts.push(`CP ${data.postcode}`);
+    }
+
+    // Municipio/Ciudad
+    if (data.city && !direccionParts.includes(data.city)) {
+      direccionParts.push(data.city);
+    }
+
+    // Estado
+    if (
+      data.principalSubdivision &&
+      !direccionParts.includes(data.principalSubdivision)
+    ) {
+      direccionParts.push(data.principalSubdivision);
+    }
+
+    // País
+    if (data.countryName) {
+      direccionParts.push(data.countryName);
+    }
+
+    return direccionParts.join(", ");
+  };
+
+  btnUbicacion.addEventListener("click", obtenerUbicacionActual);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const pedidoCompleto =
+      JSON.parse(localStorage.getItem("pedidoCompleto")) || {};
+    const totalPedido = parseFloat(localStorage.getItem("totalPedido")) || 0;
+
+    const datos = {
+      cliente_folio: usuarioAutenticado.folio,
+      direccion: document.getElementById("direccion").value.trim(),
+      referencia: document.getElementById("referencia").value.trim(),
+      alimentos: {
+        cortes: pedidoCompleto.cortes.map((item) => item.nombre),
+        bebidas: pedidoCompleto.bebidas.map((item) => item.nombre),
+      },
+      total: totalPedido,
+      latitud: coordenadasActuales.latitud,
+      longitud: coordenadasActuales.longitud,
     };
 
-    btnUbicacion.addEventListener('click', obtenerUbicacionActual);
+    if (!datos.direccion || !datos.referencia) {
+      alert("Complete dirección y referencia");
+      return;
+    }
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const pedidoCompleto = JSON.parse(localStorage.getItem('pedidoCompleto')) || {};
-        const totalPedido = parseFloat(localStorage.getItem('totalPedido')) || 0;
+    try {
+      // Guardar pedido en Firestore
+      const domiciliosRef = db.collection("domicilios");
+      const docRef = await domiciliosRef.add({
+        folio_cliente: datos.cliente_folio,
+        cortes: datos.alimentos.cortes,
+        bebidas: datos.alimentos.bebidas,
+        direccion: datos.direccion,
+        referencia: datos.referencia,
+        total: datos.total,
+        latitud: datos.latitud,
+        longitud: datos.longitud,
+        metodo_pago: null, // Se actualizará después
+        fecha_pedido: firebase.firestore.FieldValue.serverTimestamp(),
+      });
 
-        const datos = {
-            cliente_folio: usuarioAutenticado.folio,
-            direccion: document.getElementById('direccion').value.trim(),
-            referencia: document.getElementById('referencia').value.trim(),
-            alimentos: {
-                cortes: pedidoCompleto.cortes.map(item => item.nombre),
-                bebidas: pedidoCompleto.bebidas.map(item => item.nombre)
-            },
-            total: totalPedido,
-            latitud: coordenadasActuales.latitud,
-            longitud: coordenadasActuales.longitud
-        };
+      const folio_d = `DOM-${docRef.id.substring(0, 8).toUpperCase()}`;
 
-        if (!datos.direccion || !datos.referencia) {
-            alert('Complete dirección y referencia');
-            return;
-        }
-
-        try {
-            // Guardar pedido en Firestore
-            const domiciliosRef = db.collection('domicilios');
-            const docRef = await domiciliosRef.add({
-                folio_cliente: datos.cliente_folio,
-                cortes: datos.alimentos.cortes,
-                bebidas: datos.alimentos.bebidas,
-                direccion: datos.direccion,
-                referencia: datos.referencia,
-                total: datos.total,
-                latitud: datos.latitud,
-                longitud: datos.longitud,
-                metodo_pago: null, // Se actualizará después
-                fecha_pedido: firebase.firestore.FieldValue.serverTimestamp()
-            });
-
-            const folio_d = `DOM-${docRef.id.substring(0, 8).toUpperCase()}`;
-
-            sessionStorage.setItem('ultimoFolio', docRef.id);
-            sessionStorage.setItem('ultimoFolioFormato', folio_d);
-            coordenadasActuales = { latitud: null, longitud: null };
-            window.location.href = "metodos_pago/metodos_pago.html";
-            
-        } catch (error) {
-            alert(`Error: ${error.message}`);
-        }
-    });
+      sessionStorage.setItem("ultimoFolio", docRef.id);
+      sessionStorage.setItem("ultimoFolioFormato", folio_d);
+      coordenadasActuales = { latitud: null, longitud: null };
+      window.location.href = "metodos_pago/metodos_pago.html";
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
+  });
 });

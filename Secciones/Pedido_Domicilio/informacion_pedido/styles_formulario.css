@@ -13,12 +13,20 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
+    align-items: start;
 }
 
 .form-image {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     border-radius: 8px;
+}
+
+.menu-header h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #3E2723;
 }
 
 .next-btn {
@@ -30,10 +38,17 @@ body {
     font-size: 18px;
     cursor: pointer;
     width: 100%;
+    min-height: 50px;
+    transition: all 0.3s ease;
 }
 
 .next-btn:hover {
     background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+.next-btn:active {
+    transform: translateY(0);
 }
 
 .form-group {
@@ -44,14 +59,17 @@ body {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    font-size: 16px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    min-height: 44px; /* Touch-friendly */
+    box-sizing: border-box;
 }
 
 /* Estilos adicionales para campos bloqueados */
@@ -65,11 +83,12 @@ input:read-only {
 .location-input-group {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
         
 .location-input-group input {
     flex: 1;
-    margin-right: 10px;
+    margin-right: 0;
 }
         
 .location-btn {
@@ -81,8 +100,10 @@ input:read-only {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
 }
         
 .location-btn:hover {
@@ -106,4 +127,151 @@ input:read-only {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* ======= Responsive Design ======= */
+
+/* Tablets grandes y pantallas medianas */
+@media (max-width: 992px) {
+    .form-grid {
+        gap: 30px;
+    }
+    
+    .menu-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Tablets portrait - cambio a columna única */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .image-column {
+        order: -1; /* Imagen primero en móviles */
+        max-height: 300px;
+        overflow: hidden;
+    }
+    
+    .form-image {
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .menu-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        font-size: 15px;
+    }
+    
+    .next-btn {
+        font-size: 17px;
+        padding: 14px 25px;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+    
+    .image-column {
+        max-height: 250px;
+    }
+    
+    .form-image {
+        height: 250px;
+    }
+    
+    .menu-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .form-group input {
+        padding: 11px;
+        font-size: 16px; /* Evita zoom en iOS */
+    }
+    
+    .location-input-group {
+        gap: 8px;
+    }
+    
+    .next-btn {
+        font-size: 16px;
+        padding: 13px 20px;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 375px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .image-column {
+        max-height: 200px;
+    }
+    
+    .form-image {
+        height: 200px;
+    }
+    
+    .menu-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .form-group input {
+        padding: 10px;
+    }
+    
+    .location-btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 8px;
+    }
+    
+    .location-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    .image-column {
+        display: none; /* Ocultar imagen en landscape para ahorrar espacio */
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
 }

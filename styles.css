@@ -1,232 +1,417 @@
 /* styles/home.css */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 body {
-    overflow: hidden;
-    background-color: beige;
+  overflow: hidden;
+  background-color: beige;
 }
 
 .contenedor {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 /* ======= Sección Izquierda ======= */
 .seccion-izquierda {
-    flex: 0 0 45%;
-    padding: 5% 7%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: beige;
-    min-height: 100vh;
+  flex: 0 0 45%;
+  padding: 5% 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: beige;
+  min-height: 100vh;
 }
 
 .contenedor-logo {
-    width: 100%;
-    margin-bottom: 8vh; /* Reducido para subir elementos */
-    text-align: left;
+  width: 100%;
+  margin-bottom: 8vh; /* Reducido para subir elementos */
+  text-align: left;
 }
 
 .logo {
-    width: 80%;
-    max-width: 300px;
+  width: 80%;
+  max-width: 300px;
 }
 
 .titulo-lema {
-    font-size: 2.8rem;
-    line-height: 1;
-    margin-bottom: 10vh; /* Reducido para subir el botón */
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: #2a2a2a;
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 10vh; /* Reducido para subir el botón */
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #2a2a2a;
 }
 
 .linea-lema {
-    display: block;
-    margin-bottom: 0.15em;
+  display: block;
+  margin-bottom: 0.15em;
 }
 
 .contenedor-boton {
-    width: 100%;
-    margin-top: 6vh !important; /* Posición más alta */
+  width: 100%;
+  margin-top: 6vh !important; /* Posición más alta */
 }
 
 .texto-servicio {
-    color: #7f8c8d;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    font-weight: 600;
+  color: #7f8c8d;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .boton-principal {
-    background: #e74c3c;
-    color: white;
-    padding: 18px 0;
-    border: none;
-    border-radius: 40px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    max-width: 320px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+  background: #e74c3c;
+  color: white;
+  padding: 18px 0;
+  border: none;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 320px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
 }
 
 .boton-principal:hover {
-    background: #c0392b;
-    transform: translateY(-2px);
+  background: #c0392b;
+  transform: translateY(-2px);
 }
 
 /* ======= Sección Derecha ======= */
 .seccion-derecha {
-    flex: 0 0 55%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: beige;
-    overflow: hidden;
-    position: relative;
-    position: relative; /* Añadido para posicionar el horario */
+  flex: 0 0 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: beige;
+  overflow: hidden;
+  position: relative;
+  position: relative; /* Añadido para posicionar el horario */
 }
 
 .imagen-destacada {
-    width: 80vmin;
-    height: 80vmin;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    box-shadow: 0 20px 40px rgb(255, 254, 254);
-    border: 8px solid #ffffff;
-    overflow: hidden;
-    animation: flotar 4s ease-in-out infinite;
+  width: 80vmin;
+  height: 80vmin;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 20px 40px rgb(255, 254, 254);
+  border: 8px solid #ffffff;
+  overflow: hidden;
+  animation: flotar 4s ease-in-out infinite;
 }
 
 .horario-atencion {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(0, 0, 0,8);
-    color: white;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    backdrop-filter: blur(5px);
-    max-width: 250px;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 8);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  max-width: 250px;
 }
 
 .horario-atencion h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .horario-atencion p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .horario-atencion {
-        bottom: 20px;
-        right: 20px;
-        padding: 15px;
-        max-width: 200px;
-    }
-    
-    .horario-atencion h3 {
-        font-size: 1rem;
-    }
-    
-    .horario-atencion p {
-        font-size: 0.8rem;
-    }
+  .horario-atencion {
+    bottom: 20px;
+    right: 20px;
+    padding: 15px;
+    max-width: 200px;
+  }
+
+  .horario-atencion h3 {
+    font-size: 1rem;
+  }
+
+  .horario-atencion p {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .horario-atencion {
-        bottom: 10px;
-        right: 10px;
-        padding: 10px;
-        max-width: 180px;
-    }
+  .horario-atencion {
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    max-width: 180px;
+  }
 }
 
 /* Animación flotante */
 @keyframes flotar {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* ======= Responsive ======= */
+
+/* Desktop grande - ajustes menores */
+@media (max-width: 1400px) {
+  .logo {
+    width: 75%;
+    max-width: 280px;
+  }
+
+  .titulo-lema {
+    font-size: 2.6rem;
+  }
+}
+
+/* Desktop estándar */
 @media (max-width: 1200px) {
-    .logo {
-        width: 70%;
-        max-width: 250px;
-    }
+  .logo {
+    width: 70%;
+    max-width: 250px;
+  }
+
+  .titulo-lema {
+    font-size: 2.4rem;
+  }
+
+  .imagen-destacada {
+    width: 75vmin;
+    height: 75vmin;
+  }
 }
 
+/* Tablets landscape y pantallas medianas */
 @media (max-width: 992px) {
-    .logo {
-        width: 65%;
-        max-width: 220px;
-    }
+  .logo {
+    width: 65%;
+    max-width: 220px;
+  }
+
+  .titulo-lema {
+    font-size: 2.2rem;
+  }
+
+  .seccion-izquierda {
+    padding: 4% 6%;
+  }
+
+  .imagen-destacada {
+    width: 70vmin;
+    height: 70vmin;
+  }
 }
 
+/* Tablets portrait - cambio a layout vertical */
 @media (max-width: 768px) {
-    .contenedor {
-        flex-direction: column;
-    }
+  body {
+    overflow: auto; /* Permitir scroll en móviles */
+  }
 
-    .seccion-izquierda {
-        padding: 12% 10%;
-        min-height: 70vh;
-    }
+  .contenedor {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
 
-    .logo {
-        max-width: 200px;
-        margin-bottom: 6vh;
-    }
+  .seccion-izquierda {
+    flex: 1 1 auto;
+    padding: 8% 8%;
+    min-height: auto;
+  }
 
-    .imagen-destacada {
-        width: 70vw;
-        height: 70vw;
-        margin: 5vh 0;
-    }
+  .seccion-derecha {
+    flex: 1 1 auto;
+    padding: 6% 0;
+    min-height: 50vh;
+  }
 
-    .titulo-lema {
-        font-size: 2rem;
-        margin-bottom: 8vh;
-    }
+  .logo {
+    width: 60%;
+    max-width: 200px;
+    margin-bottom: 4vh;
+  }
 
-    .contenedor-boton {
-        margin-top: 4vh !important;
-    }
+  .imagen-destacada {
+    width: 65vw;
+    height: 65vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .titulo-lema {
+    font-size: 2rem;
+    margin-bottom: 6vh;
+    line-height: 1.1;
+  }
+
+  .contenedor-boton {
+    margin-top: 4vh !important;
+  }
+
+  .boton-principal {
+    padding: 16px 0;
+    font-size: 1.05rem;
+    max-width: 100%;
+  }
+
+  .horario-atencion {
+    position: static;
+    margin: 3vh auto 0;
+    max-width: 280px;
+  }
 }
 
+/* Móviles grandes (iPhone 12, 13, Samsung S21, etc) */
 @media (max-width: 480px) {
-    .logo {
-        max-width: 180px;
-    }
-    
-    .titulo-lema {
-        font-size: 1.8rem;
-        margin-bottom: 6vh;
-    }
-    
-    .boton-principal {
-        font-size: 1rem;
-    }
+  .seccion-izquierda {
+    padding: 10% 6%;
+  }
+
+  .logo {
+    width: 70%;
+    max-width: 180px;
+    margin-bottom: 3vh;
+  }
+
+  .titulo-lema {
+    font-size: 1.7rem;
+    margin-bottom: 5vh;
+    letter-spacing: -0.03em;
+  }
+
+  .texto-servicio {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .boton-principal {
+    padding: 15px 0;
+    font-size: 0.95rem;
+    border-radius: 35px;
+  }
+
+  .imagen-destacada {
+    width: 75vw;
+    height: 75vw;
+    max-width: 350px;
+    max-height: 350px;
+    border: 6px solid #ffffff;
+  }
+
+  .horario-atencion {
+    padding: 18px;
+    max-width: 250px;
+    margin-top: 2vh;
+  }
+
+  .horario-atencion h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .horario-atencion p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Móviles pequeños (iPhone SE, etc) */
+@media (max-width: 375px) {
+  .seccion-izquierda {
+    padding: 8% 5%;
+  }
+
+  .logo {
+    width: 75%;
+    max-width: 160px;
+  }
+
+  .titulo-lema {
+    font-size: 1.5rem;
+    margin-bottom: 4vh;
+  }
+
+  .boton-principal {
+    padding: 14px 0;
+    font-size: 0.9rem;
+  }
+
+  .imagen-destacada {
+    width: 80vw;
+    height: 80vw;
+    max-width: 300px;
+    max-height: 300px;
+    border: 5px solid #ffffff;
+  }
+
+  .horario-atencion {
+    padding: 15px;
+    max-width: 220px;
+  }
+
+  .horario-atencion h3 {
+    font-size: 1rem;
+  }
+
+  .horario-atencion p {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+  .contenedor {
+    flex-direction: row;
+  }
+
+  .seccion-izquierda {
+    padding: 3% 5%;
+    min-height: 100vh;
+  }
+
+  .titulo-lema {
+    font-size: 1.6rem;
+    margin-bottom: 3vh;
+  }
+
+  .imagen-destacada {
+    width: 50vh;
+    height: 50vh;
+  }
+
+  .horario-atencion {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px;
+    max-width: 200px;
+  }
 }

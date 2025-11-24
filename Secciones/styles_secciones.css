@@ -41,11 +41,12 @@ body{
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tarjeta-servicio:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
 .contenedor-imagen {
@@ -55,7 +56,7 @@ body{
 }
 
 .imagen-servicio {
-    width: 90;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -82,14 +83,23 @@ body{
     font-weight: 600;
     margin: 2rem;
     transition: all 0.3s ease;
+    min-height: 50px;
+    cursor: pointer;
 }
 
 .boton-servicio:hover {
     background: #c0392b;
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+    transform: translateY(-2px);
 }
 
-/* Responsive Design */
+.boton-servicio:active {
+    transform: translateY(0);
+}
+
+/* ======= Responsive Design ======= */
+
+/* Desktop grande */
 @media (max-width: 1200px) {
     .grid-servicios {
         grid-template-columns: repeat(3, 1fr);
@@ -97,40 +107,153 @@ body{
     }
     
     .contenedor-imagen {
-        height: 300px;
+        height: 280px;
+    }
+    
+    .titulo-principal {
+        font-size: 2.4rem;
+    }
+    
+    .tarjeta-servicio h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Tablets landscape - 2 columnas */
+@media (max-width: 992px) {
+    .contenedor-servicios {
+        padding: 3rem 1.5rem;
+    }
+    
+    .grid-servicios {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .titulo-principal {
+        font-size: 2.2rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .contenedor-imagen {
+        height: 260px;
+    }
+    
+    .tarjeta-servicio h2 {
+        font-size: 1.7rem;
+        margin: 1.5rem 0;
+    }
+}
+
+/* Tablets portrait - 1 columna */
+@media (max-width: 768px) {
+    .contenedor-servicios {
+        padding: 2.5rem 1rem;
+    }
+    
+    .grid-servicios {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 600px;
     }
     
     .titulo-principal {
         font-size: 2rem;
     }
     
+    .subtitulo {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .contenedor-imagen {
+        height: 300px;
+    }
+    
     .tarjeta-servicio h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+    
+    .boton-servicio {
+        padding: 0.9rem 2.2rem;
+        font-size: 16px;
     }
 }
 
-@media (max-width: 992px) {
-    .grid-servicios {
-        grid-template-columns: repeat(2, 1fr);
+/* Móviles grandes */
+@media (max-width: 480px) {
+    .contenedor-servicios {
+        padding: 2rem 0.75rem;
     }
-}
-
-@media (max-width: 768px) {
+    
     .grid-servicios {
-        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .titulo-principal {
+        font-size: 1.7rem;
+    }
+    
+    .subtitulo {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        letter-spacing: 0.5px;
     }
     
     .contenedor-imagen {
         height: 250px;
     }
+    
+    .tarjeta-servicio {
+        border-radius: 12px;
+    }
+    
+    .tarjeta-servicio h2 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        padding: 0 1.5rem;
+    }
+    
+    .boton-servicio {
+        padding: 0.85rem 2rem;
+        font-size: 15px;
+        margin: 1.5rem;
+    }
 }
 
-@media (max-width: 480px) {
+/* Móviles pequeños */
+@media (max-width: 375px) {
+    .contenedor-servicios {
+        padding: 1.5rem 0.5rem;
+    }
+    
     .titulo-principal {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     
     .subtitulo {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contenedor-imagen {
+        height: 220px;
+    }
+    
+    .tarjeta-servicio h2 {
+        font-size: 1.4rem;
+        margin: 1.25rem 0;
+        padding: 0 1rem;
+    }
+    
+    .boton-servicio {
+        padding: 0.8rem 1.8rem;
+        font-size: 14px;
+        margin: 1.25rem;
     }
 }
